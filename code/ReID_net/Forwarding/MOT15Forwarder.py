@@ -1,6 +1,6 @@
 from .Forwarder import Forwarder
 import numpy
-from ReID_net.Log import log
+from Log import log
 import time
 
 class MOT15Forwarder(Forwarder):

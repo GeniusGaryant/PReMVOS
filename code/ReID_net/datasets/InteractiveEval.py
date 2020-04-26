@@ -8,11 +8,11 @@ from scipy.ndimage.morphology import distance_transform_edt
 import numpy as np
 from skimage import measure as skimage_measure
 
-import ReID_net.Constants as Constants
-import ReID_net.Measures as Measures
-import ReID_net.datasets.Util.Util as Util
-from ReID_net.Log import log
-from ReID_net.datasets.Util.Util import get_masked_image
+import Constants as Constants
+import Measures as Measures
+import datasets.Util.Util as Util
+from Log import log
+from datasets.Util.Util import get_masked_image
 
 before = defaultdict(int)
 after = defaultdict(int)

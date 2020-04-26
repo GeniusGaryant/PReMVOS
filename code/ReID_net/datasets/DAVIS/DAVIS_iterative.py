@@ -3,12 +3,12 @@ import time
 
 import numpy as np
 
-import ReID_net.Measures as Measures
-from ReID_net.Log import log
-from ReID_net.datasets.DAVIS.DAVIS import read_image_and_annotation_list, group_into_sequences
-from ReID_net.datasets.DAVIS.DAVIS_oneshot import DavisOneshotDataset, _load_flows
-from ReID_net.datasets.Util.Reader import create_tensor_dict
-from ReID_net.datasets.Util.Util import unique_list
+import Measures as Measures
+from Log import log
+from datasets.DAVIS.DAVIS import read_image_and_annotation_list, group_into_sequences
+from datasets.DAVIS.DAVIS_oneshot import DavisOneshotDataset, _load_flows
+from datasets.Util.Reader import create_tensor_dict
+from datasets.Util.Util import unique_list
 
 
 def _load_frame(idx, im, an, imgs, subset, flow_dir, flow_into_past, flow_into_future, flow_as_angle, use_old_label):

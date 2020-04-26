@@ -5,9 +5,9 @@ from scipy.misc import imsave
 import numpy
 import tensorflow as tf
 
-from ReID_net.Log import log
-from ReID_net.Measures import compute_iou_for_binary_segmentation, compute_measures_for_binary_segmentation, average_measures
-from ReID_net.datasets.Util.pascal_colormap import save_with_pascal_colormap
+from Log import log
+from Measures import compute_iou_for_binary_segmentation, compute_measures_for_binary_segmentation, average_measures
+from datasets.Util.pascal_colormap import save_with_pascal_colormap
 
 
 def merge_multi_samples(ys, idx_imgs, target, verbose=True):

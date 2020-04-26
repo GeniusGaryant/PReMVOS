@@ -1,5 +1,5 @@
 from .Similarity import SimilarityDataset
-from ReID_net.datasets.COCO.COCO import COCODataset
+from datasets.COCO.COCO import COCODataset
 
 
 class COCOSimilarityDataset(SimilarityDataset):

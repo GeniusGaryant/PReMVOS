@@ -1,12 +1,12 @@
 import pickle
 from scipy.misc import imsave
-from ReID_net.Log import log
+from Log import log
 
 import numpy
 import tensorflow as tf
 
-from ReID_net.Forwarding.Forwarder import ImageForwarder
-from ReID_net.Measures import compute_measures_for_binary_segmentation, average_measures
+from Forwarding.Forwarder import ImageForwarder
+from Measures import compute_measures_for_binary_segmentation, average_measures
 
 
 class PascalVOCInstanceForwarder(ImageForwarder):

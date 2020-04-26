@@ -1,4 +1,4 @@
-from ReID_net.datasets.Dataset import ImageDataset
+from datasets.Dataset import ImageDataset
 import tensorflow as tf
 
 

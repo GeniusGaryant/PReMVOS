@@ -7,8 +7,8 @@ import cv2
 import numpy as np
 from skimage import color, morphology
 
-from ReID_net.datasets.Util.flo_Reader import read_flo_file
-from ReID_net.datasets.Util.python_pfm import readPFM
+from datasets.Util.flo_Reader import read_flo_file
+from datasets.Util.python_pfm import readPFM
 
 D = 40
 D_MARGIN = 5
@@ -124,7 +124,7 @@ def geo_dist(img, pts):
   # Import these only on demand since pyximport interferes with pycocotools
   import pyximport
   pyximport.install()
-  from ReID_net.datasets.Util import sweep
+  from datasets.Util import sweep
 
   img = np.copy(img) / 255.0
   #G = nd.gaussian_gradient_magnitude(img, 1.0)
@@ -296,7 +296,7 @@ def get_image_area_to_sample(img):
 
 
 def load_clustering_labels(clustering_path):
-  from ReID_net.Log import log
+  from Log import log
   import pickle
   with open(clustering_path, "rb") as f:
     x = pickle.load(f)

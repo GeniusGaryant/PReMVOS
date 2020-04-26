@@ -4,12 +4,12 @@ import random
 import scipy.ndimage
 from PIL import Image
 
-from ReID_net.datasets.FeedDataset import OneshotImageDataset
-from ReID_net.datasets.DAVIS.DAVIS import NUM_CLASSES, VOID_LABEL, DAVIS2017_DEFAULT_PATH, read_image_and_annotation_list_2017, \
+from datasets.FeedDataset import OneshotImageDataset
+from datasets.DAVIS.DAVIS import NUM_CLASSES, VOID_LABEL, DAVIS2017_DEFAULT_PATH, read_image_and_annotation_list_2017, \
   group_into_sequences, DAVIS2017_IMAGE_SIZE, DAVIS2017_LUCID_DEFAULT_PATH
-from ReID_net.datasets.Util.Util import unique_list
-from ReID_net.datasets.Util.Reader import create_tensor_dict
-from ReID_net.Log import log
+from datasets.Util.Util import unique_list
+from datasets.Util.Reader import create_tensor_dict
+from Log import log
 
 #TODO: avoid code duplication with DAVIS_oneshot, maybe we can use this class for both datasets later?
 

@@ -2,8 +2,8 @@ import numpy
 import tensorflow as tf
 from sklearn.metrics import confusion_matrix, average_precision_score
 
-import ReID_net.Constants as Constants
-from ReID_net.Log import log
+import Constants as Constants
+from Log import log
 
 
 def create_confusion_matrix(pred, targets, n_classes):

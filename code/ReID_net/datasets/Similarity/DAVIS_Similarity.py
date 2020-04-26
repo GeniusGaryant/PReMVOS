@@ -1,8 +1,8 @@
 from .Similarity import SimilarityDataset
 import glob
-from ReID_net.datasets.Util.Reader import load_image_tensorflow
-from ReID_net.datasets.Augmentors import apply_augmentors
-from ReID_net.datasets.Util.Normalization import normalize
+from datasets.Util.Reader import load_image_tensorflow
+from datasets.Augmentors import apply_augmentors
+from datasets.Util.Normalization import normalize
 
 DEFAULT_REID_DATA = '/home/luiten/vision/PReMVOS/data/Re-ID-data'
 DEFAULT_NUM_IDS = 242

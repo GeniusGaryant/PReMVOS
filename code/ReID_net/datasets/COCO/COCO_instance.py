@@ -1,7 +1,7 @@
 import tensorflow as tf
 
-from ReID_net.datasets.COCO.COCO import COCODataset
-from ReID_net.datasets.Util import Reader
+from datasets.COCO.COCO import COCODataset
+from datasets.Util import Reader
 
 
 class COCOInstanceDataset(COCODataset):

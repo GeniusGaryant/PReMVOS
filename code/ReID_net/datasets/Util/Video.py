@@ -1,5 +1,5 @@
 import numpy
-from ReID_net.Log import log
+from Log import log
 
 
 def shift_im(im, offset):

@@ -4,7 +4,7 @@ import time
 class Timer(object):
   def __init__(self, message="", stream=None):
     if stream is None:
-      from ReID_net.Log import log
+      from Log import log
       stream = log.v4
     self.stream = stream
     self.start = None

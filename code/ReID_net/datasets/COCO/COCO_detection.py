@@ -1,8 +1,8 @@
 import tensorflow as tf
 import numpy
 
-from ReID_net.datasets.COCO.COCO import COCODataset
-import ReID_net.Constants as Constants
+from datasets.COCO.COCO import COCODataset
+import Constants as Constants
 
 NUM_CLASSES = 90
 N_MAX_DETECTIONS = 100

@@ -1,7 +1,7 @@
 import tensorflow as tf
 import numpy
 
-from ReID_net.datasets.Util.Util import smart_shape
+from datasets.Util.Util import smart_shape
 from .NetworkLayers import Layer
 from .Util_Network import prepare_input
 

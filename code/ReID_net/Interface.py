@@ -3,11 +3,11 @@ import sys
 import numpy
 import tensorflow as tf
 
-from ReID_net.Engine import Engine
-from ReID_net.Config import Config
-from ReID_net.main import init_log
-from ReID_net.Log import log
-from ReID_net.datasets.Util.Util import smart_shape
+from Engine import Engine
+from Config import Config
+from main import init_log
+from Log import log
+from datasets.Util.Util import smart_shape
 
 
 def compute_ious(x, y):

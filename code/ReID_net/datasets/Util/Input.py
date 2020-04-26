@@ -1,7 +1,7 @@
 import tensorflow as tf
 
-import ReID_net.Constants as Constants
-from ReID_net.datasets.Util.Normalization import normalize
+import Constants as Constants
+from datasets.Util.Normalization import normalize
 
 
 def assemble_input_tensors(tensors, img_size=(None, None)):

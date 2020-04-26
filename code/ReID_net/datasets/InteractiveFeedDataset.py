@@ -3,13 +3,13 @@ from abc import abstractmethod
 
 import numpy as np
 
-import ReID_net.Constants as Constants
-from ReID_net.datasets.DAVIS.DAVIS_iterative import _load_video
-from ReID_net.datasets.FeedDataset import FeedImageDataset, OneshotImageDataset
-from ReID_net.datasets.PascalVOC.PascalVOC_interactive import PascalVOCInteractiveDataset
-from ReID_net.datasets.PascalVOC.PascalVOC_interactive_correction import create_old_mask
-from ReID_net.datasets.Util.Reader import create_tensor_dict
-from ReID_net.datasets.Util.Util import username
+import Constants as Constants
+from datasets.DAVIS.DAVIS_iterative import _load_video
+from datasets.FeedDataset import FeedImageDataset, OneshotImageDataset
+from datasets.PascalVOC.PascalVOC_interactive import PascalVOCInteractiveDataset
+from datasets.PascalVOC.PascalVOC_interactive_correction import create_old_mask
+from datasets.Util.Reader import create_tensor_dict
+from datasets.Util.Util import username
 import tensorflow as tf
 
 NUM_CLASSES = 2

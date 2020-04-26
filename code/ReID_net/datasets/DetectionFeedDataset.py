@@ -1,10 +1,10 @@
 import tensorflow as tf
 
-from ReID_net.datasets.Dataset import Dataset
-from ReID_net.datasets.Util.Reader import read_images_from_disk
-from ReID_net.datasets.Util.Batch import create_batch_dict
-from ReID_net.datasets.Util.Resize import ResizeMode
-import ReID_net.Constants as Constants
+from datasets.Dataset import Dataset
+from datasets.Util.Reader import read_images_from_disk
+from datasets.Util.Batch import create_batch_dict
+from datasets.Util.Resize import ResizeMode
+import Constants as Constants
 
 
 def _create_labels(img_path, bboxes):
@@ -24,7 +24,7 @@ class DetectionFeedDataset(Dataset):
 
   def create_input_tensors_dict(self, batch_size):
     assert batch_size == 1
-    #TODO: get this from ReID_net.Config
+    #TODO: get this from Config
     resize_mode, input_size = self._get_resize_params(self.subset, [None, None], ResizeMode.DetectionFixedSizeForEval)
     queue = [self.img_filename_placeholder, self.bboxes_placeholder]
     tensors_dict, summaries = read_images_from_disk(queue, input_size, resize_mode, label_load_fn=_create_labels)

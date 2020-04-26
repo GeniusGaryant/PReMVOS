@@ -3,7 +3,7 @@ import pickle
 import numpy
 import tensorflow as tf
 
-from ReID_net.Log import log
+from Log import log
 
 
 # from https://github.com/tensorflow/models/blob/master/tutorials/image/cifar10/cifar10_multi_gpu_train.py

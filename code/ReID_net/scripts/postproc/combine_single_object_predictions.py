@@ -6,7 +6,7 @@ import os.path
 import pickle
 import numpy
 from joblib import Parallel, delayed
-from ReID_net.datasets.Util.pascal_colormap import save_with_pascal_colormap
+from datasets.Util.pascal_colormap import save_with_pascal_colormap
 
 BASE_DIR = "/home/voigtlaender/vision/savitar/forwarded/"
 #PARALLEL = False

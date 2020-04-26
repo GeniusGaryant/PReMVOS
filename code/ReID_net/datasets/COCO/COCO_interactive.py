@@ -3,9 +3,9 @@ import random
 import numpy as np
 import tensorflow as tf
 
-import ReID_net.Constants as Constants
-from ReID_net.datasets.COCO.COCO_instance import COCOInstanceDataset
-from ReID_net.datasets.Util import Reader
+import Constants as Constants
+from datasets.COCO.COCO_instance import COCOInstanceDataset
+from datasets.Util import Reader
 
 
 class COCOInteractiveDataset(COCOInstanceDataset):

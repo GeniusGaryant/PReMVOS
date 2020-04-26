@@ -1,5 +1,5 @@
-from ReID_net.datasets.DAVIS.DAVIS_oneshot import DavisOneshotDataset
-from ReID_net.datasets.DAVIS.DAVIS import VOID_LABEL
+from datasets.DAVIS.DAVIS_oneshot import DavisOneshotDataset
+from datasets.DAVIS.DAVIS import VOID_LABEL
 import numpy as np
 
 

@@ -1,7 +1,7 @@
 import numpy
 import numpy.matlib
 import time
-from ReID_net.Log import log
+from Log import log
 
 def do_cmc_validation(engine,network,data):
   m = data.num_test_id

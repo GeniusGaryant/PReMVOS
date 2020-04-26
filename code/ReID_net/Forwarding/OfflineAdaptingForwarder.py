@@ -1,8 +1,8 @@
-import ReID_net.Measures as Measures
-import ReID_net.Util as Util
-from ReID_net.Log import log
+import Measures as Measures
+import Util as Util
+from Log import log
 import numpy
-from ReID_net.Forwarding.OneshotForwarder import OneshotForwarder
+from Forwarding.OneshotForwarder import OneshotForwarder
 
 
 #for legacy adaptation images handling (can be removed at some point)

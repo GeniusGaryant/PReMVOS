@@ -8,7 +8,7 @@ import os
 from joblib import Parallel, delayed
 import sys
 
-from ReID_net.datasets.DAVIS.DAVIS_iterative import get_bounding_box
+from datasets.DAVIS.DAVIS_iterative import get_bounding_box
 
 imgs_path = "/work/mahadevan/data/DAVIS/JPEGImages/480p/"
 annots_path = "/work/mahadevan/data/DAVIS/Annotations/480p/"

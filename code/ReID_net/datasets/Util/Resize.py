@@ -1,7 +1,7 @@
 import tensorflow as tf
 
-import ReID_net.Constants as Constants
-from ReID_net.datasets.Util.Util import smart_shape
+import Constants as Constants
+from datasets.Util.Util import smart_shape
 
 # enum
 class ResizeMode:

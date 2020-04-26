@@ -7,8 +7,8 @@ import sys
 sys.setrecursionlimit(10000)
 
 from .Forwarder import Forwarder
-from ReID_net.Log import log
-from ReID_net.datasets.Util.Util import username
+from Log import log
+from datasets.Util.Util import username
 
 
 class ClusteringForwarder(Forwarder):

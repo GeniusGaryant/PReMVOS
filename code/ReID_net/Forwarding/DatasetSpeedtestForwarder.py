@@ -1,8 +1,8 @@
 import tensorflow as tf
 
-from ReID_net.Forwarding.Forwarder import Forwarder
-from ReID_net.datasets.Util.Timer import Timer
-from ReID_net.Log import log
+from Forwarding.Forwarder import Forwarder
+from datasets.Util.Timer import Timer
+from Log import log
 
 
 class DatasetSpeedtestForwarder(Forwarder):

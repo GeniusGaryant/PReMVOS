@@ -1,4 +1,4 @@
-from ReID_net.Log import log
+from Log import log
 import json
 from collections import OrderedDict
 import tensorflow as tf
@@ -20,6 +20,7 @@ class Config(object):
     if self._initialized:
       return
     batch_size = self.int("batch_size")
+    # self.str("bb_input_dir", None) = seq_path
     gpus = self.int_list("gpus")
     if batch_size % len(gpus) != 0:
       batch_size += len(gpus) - batch_size % len(gpus)

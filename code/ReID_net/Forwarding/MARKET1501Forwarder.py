@@ -1,9 +1,9 @@
 from .Forwarder import Forwarder
 import numpy as np
-from ReID_net.Log import log
+from Log import log
 import time
-# from ReID_net.Forwarding.CMC_Validator import do_cmc_validation_triplet
-# import ReID_net.Measures as Measures
+# from Forwarding.CMC_Validator import do_cmc_validation_triplet
+# import Measures as Measures
 
 class MARKET1501Forwarder(Forwarder):
   def __init__(self, engine):

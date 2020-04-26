@@ -1,8 +1,8 @@
 import glob
 import tensorflow as tf
-from ReID_net.datasets.Dataset import ImageDataset
-from ReID_net.datasets.Util.Util import username, unique_list
-from ReID_net.datasets.Util.Reader import load_label_default
+from datasets.Dataset import ImageDataset
+from datasets.Util.Util import username, unique_list
+from datasets.Util.Reader import load_label_default
 
 NUM_CLASSES = 2
 VOID_LABEL = 255  # for translation augmentation

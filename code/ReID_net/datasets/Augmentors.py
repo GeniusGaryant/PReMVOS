@@ -2,9 +2,9 @@
 import math
 import tensorflow as tf
 
-import ReID_net.Constants as Constants
-from ReID_net.datasets.Util.Resize import resize_image, random_crop_image
-from ReID_net.datasets.Util.Util import smart_shape
+import Constants as Constants
+from datasets.Util.Resize import resize_image, random_crop_image
+from datasets.Util.Util import smart_shape
 
 #we do all augmentation in the [0,1] domain!
 

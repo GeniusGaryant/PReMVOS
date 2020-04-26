@@ -6,9 +6,9 @@ from scipy.misc import imsave
 import numpy
 import tensorflow as tf
 
-import ReID_net.Measures as Measures
-from ReID_net.Forwarding.OneshotForwarder import OneshotForwarder
-from ReID_net.Log import log
+import Measures as Measures
+from Forwarding.OneshotForwarder import OneshotForwarder
+from Log import log
 
 
 class IterativeImageForwarder(OneshotForwarder):

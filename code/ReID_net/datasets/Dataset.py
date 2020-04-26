@@ -3,14 +3,14 @@ from abc import ABCMeta, abstractmethod
 import numpy as np
 import tensorflow as tf
 from skimage.draw import circle
-import ReID_net.Constants as Constants
-import ReID_net.datasets.Util.Util as Util
-from ReID_net.Log import log
-from ReID_net.datasets.Augmentors import parse_augmentors
-from ReID_net.datasets.Util.Batch import create_batch_dict
-from ReID_net.datasets.Util.Normalization import unnormalize
-from ReID_net.datasets.Util.Reader import read_images_from_disk, load_label_default, load_img_default
-from ReID_net.datasets.Util.Resize import parse_resize_mode, ResizeMode
+import Constants as Constants
+import datasets.Util.Util as Util
+from Log import log
+from datasets.Augmentors import parse_augmentors
+from datasets.Util.Batch import create_batch_dict
+from datasets.Util.Normalization import unnormalize
+from datasets.Util.Reader import read_images_from_disk, load_label_default, load_img_default
+from datasets.Util.Resize import parse_resize_mode, ResizeMode
 
 
 class Dataset(object, metaclass=ABCMeta):

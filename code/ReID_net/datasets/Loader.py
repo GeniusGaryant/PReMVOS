@@ -1,22 +1,22 @@
-import ReID_net.Constants as Constants
+import Constants as Constants
 from .COCO.COCO import COCODataset
 from .DAVIS.DAVIS import DAVISDataset, DAVIS2017Dataset
-from ReID_net.datasets.COCO.COCO_detection import COCODetectionDataset
-from ReID_net.datasets.COCO.COCO_instance import COCOInstanceDataset
-from ReID_net.datasets.COCO.COCO_interactive import COCOInteractiveDataset
-from ReID_net.datasets.COCO.COCO_objectness import CocoObjectnessDataset
-from ReID_net.datasets.Custom.Custom import CustomDataset
-from ReID_net.datasets.DAVIS.DAVIS2017_oneshot import Davis2017OneshotDataset
-from ReID_net.datasets.DAVIS.DAVIS_instance import DAVISInstanceDataset
-from ReID_net.datasets.DAVIS.DAVIS_iterative import DavisIterativeDataset
-from ReID_net.datasets.DAVIS.DAVIS_masktransfer import DAVISMaskTransferDataset
-from ReID_net.datasets.DAVIS.DAVIS_oneshot import DavisOneshotDataset
-from ReID_net.datasets.Similarity.COCO_Similarity import COCOSimilarityDataset
-from ReID_net.datasets.Similarity.DAVIS_Similarity import DAVISSimilarityDataset
-from ReID_net.datasets.Similarity.DAVIS_Forward_Similarity import DAVISForwardSimilarityDataset
-from ReID_net.datasets.Similarity.DAVIS_Forward_Feed import DAVISForwardFeedDataset
+from datasets.COCO.COCO_detection import COCODetectionDataset
+from datasets.COCO.COCO_instance import COCOInstanceDataset
+from datasets.COCO.COCO_interactive import COCOInteractiveDataset
+from datasets.COCO.COCO_objectness import CocoObjectnessDataset
+from datasets.Custom.Custom import CustomDataset
+from datasets.DAVIS.DAVIS2017_oneshot import Davis2017OneshotDataset
+from datasets.DAVIS.DAVIS_instance import DAVISInstanceDataset
+from datasets.DAVIS.DAVIS_iterative import DavisIterativeDataset
+from datasets.DAVIS.DAVIS_masktransfer import DAVISMaskTransferDataset
+from datasets.DAVIS.DAVIS_oneshot import DavisOneshotDataset
+from datasets.Similarity.COCO_Similarity import COCOSimilarityDataset
+from datasets.Similarity.DAVIS_Similarity import DAVISSimilarityDataset
+from datasets.Similarity.DAVIS_Forward_Similarity import DAVISForwardSimilarityDataset
+from datasets.Similarity.DAVIS_Forward_Feed import DAVISForwardFeedDataset
 
-def load_dataset(config, subset, session, coordinator, name=None):
+def load_dataset(config, subset, session, coordinator, seq_path, name=None):
   if name is None:
     if subset != "train":
       name = config.str("dataset_val", "").lower()
@@ -84,8 +84,10 @@ def load_dataset(config, subset, session, coordinator, name=None):
     return COCOSimilarityDataset(config, subset, coordinator)
   elif name == "davis_similarity":
     return DAVISSimilarityDataset(config, subset, coordinator)
+
   elif name == "davis_forward_similarity":
-    return DAVISForwardSimilarityDataset(config, subset, coordinator)
+    return DAVISForwardSimilarityDataset(config, subset, coordinator, seq_path)
+
   elif name == "davis_forward_feed":
     return DAVISForwardFeedDataset(config, subset, coordinator)
   elif name == "custom":

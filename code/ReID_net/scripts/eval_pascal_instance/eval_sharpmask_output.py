@@ -3,8 +3,8 @@ from scipy.misc import imread
 
 import numpy as np
 
-import ReID_net.Measures as Measures
-import ReID_net.Util as Util
+import Measures as Measures
+import Util as Util
 import datasets.Util.Util as dataUtil
 
 SHARPMASK_PATH = '/home/' + dataUtil.username() + '/vision/from_paul/deepmask_VOT/data/out_sharpmask/'

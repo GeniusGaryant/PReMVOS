@@ -4,7 +4,7 @@ import os
 import numpy as np
 from scipy import misc
 import scipy.io
-from ReID_net.datasets.Util import Util as dataUtil
+from datasets.Util import Util as dataUtil
 
 VOC_PATH = "/work/" + dataUtil.username() + "/data/PascalVOC/benchmark_RELEASE/dataset/"
 OUT_FN = "list.txt"

@@ -3,9 +3,9 @@ import os
 import numpy as np
 import tensorflow as tf
 
-from ReID_net.datasets.Dataset import ImageDataset
-from ReID_net.datasets.Util import Reader
-from ReID_net.Log import log
+from datasets.Dataset import ImageDataset
+from datasets.Util import Reader
+from Log import log
 
 NUM_CLASSES = 2
 COCO_DEFAULT_PATH = "/fastwork/" + os.environ['USER'] + "/mywork/data/coco/"

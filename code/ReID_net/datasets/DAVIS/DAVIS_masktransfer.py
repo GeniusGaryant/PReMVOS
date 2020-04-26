@@ -1,14 +1,14 @@
 import tensorflow as tf
 
-from ReID_net.datasets.DAVIS.DAVIS import DAVIS_DEFAULT_PATH, DAVIS_FLOW_DEFAULT_PATH,  NUM_CLASSES, DAVIS_IMAGE_SIZE, \
+from datasets.DAVIS.DAVIS import DAVIS_DEFAULT_PATH, DAVIS_FLOW_DEFAULT_PATH,  NUM_CLASSES, DAVIS_IMAGE_SIZE, \
   VOID_LABEL, read_image_and_annotation_list, group_into_sequences, get_input_list_file
-from ReID_net.datasets.Dataset import ImageDataset
-from ReID_net.datasets.Util.Reader import load_image_tensorflow, load_png_mask_tensorflow, \
+from datasets.Dataset import ImageDataset
+from datasets.Util.Reader import load_image_tensorflow, load_png_mask_tensorflow, \
   load_flow_from_flo_tensorflow
-from ReID_net.datasets.Util.Input import assemble_input_tensors
-from ReID_net.datasets.Util.Reader import create_tensor_dict
-from ReID_net.datasets.Util.MaskDamager import damage_mask
-from ReID_net.datasets.Util.Resize import resize
+from datasets.Util.Input import assemble_input_tensors
+from datasets.Util.Reader import create_tensor_dict
+from datasets.Util.MaskDamager import damage_mask
+from datasets.Util.Resize import resize
 
 
 class DAVISMaskTransferDataset(ImageDataset):

@@ -1,4 +1,4 @@
-from ReID_net.datasets.COCO.COCO import COCODataset
+from datasets.COCO.COCO import COCODataset
 import os
 import tensorflow as tf
 import numpy as np

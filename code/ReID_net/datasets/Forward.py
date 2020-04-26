@@ -1,17 +1,17 @@
-import ReID_net.Constants as Constants
-from ReID_net.Forwarding.ClusteringForwarder import ClusteringForwarder
-from ReID_net.Forwarding.ReIDForwarding import ReIDForwarder
-from ReID_net.Forwarding.Forwarder import ImageForwarder
-from ReID_net.Forwarding.InteractiveImageForwarder import InteractiveImageForwarder
-from ReID_net.Forwarding.MOT15Forwarder import MOT15Forwarder
-from ReID_net.Forwarding.MARKET1501Forwarder import MARKET1501Forwarder
-from ReID_net.Forwarding.MaskTransferForwarder import MaskTransferForwarder, MaskTransferOneshotForwarder
-from ReID_net.Forwarding.OfflineAdaptingForwarder import OfflineAdaptingForwarder
-from ReID_net.Forwarding.OneshotForwarder import OneshotForwarder
-from ReID_net.Forwarding.OnlineAdaptingForwarder import OnlineAdaptingForwarder
-from ReID_net.Forwarding.PascalVOCInstanceForwarder import PascalVOCInstanceForwarder
-from ReID_net.Forwarding.COCOInstanceForwarder import COCOInstanceForwarder
-from ReID_net.datasets.InteractiveEval import InteractiveEval
+import Constants as Constants
+from Forwarding.ClusteringForwarder import ClusteringForwarder
+from Forwarding.ReIDForwarding import ReIDForwarder
+from Forwarding.Forwarder import ImageForwarder
+from Forwarding.InteractiveImageForwarder import InteractiveImageForwarder
+from Forwarding.MOT15Forwarder import MOT15Forwarder
+from Forwarding.MARKET1501Forwarder import MARKET1501Forwarder
+from Forwarding.MaskTransferForwarder import MaskTransferForwarder, MaskTransferOneshotForwarder
+from Forwarding.OfflineAdaptingForwarder import OfflineAdaptingForwarder
+from Forwarding.OneshotForwarder import OneshotForwarder
+from Forwarding.OnlineAdaptingForwarder import OnlineAdaptingForwarder
+from Forwarding.PascalVOCInstanceForwarder import PascalVOCInstanceForwarder
+from Forwarding.COCOInstanceForwarder import COCOInstanceForwarder
+from datasets.InteractiveEval import InteractiveEval
 
 
 def forward(engine, network, data, dataset_name, save_results, save_logits):
@@ -35,9 +35,9 @@ def forward_clustering(engine, network, data):
   forwarder = ClusteringForwarder(engine)
   forwarder.forward(network, data)
 
-def forward_reid(engine,network,data):
+def forward_reid(engine,network,data, seq_path):
   forwarder = ReIDForwarder(engine)
-  forwarder.forward(network, data)
+  forwarder.forward(network, data, seq_path)
 
 
 def oneshot_forward(engine, save_results, save_logits):

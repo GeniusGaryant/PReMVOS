@@ -1,13 +1,13 @@
 import numpy as np
 import tensorflow as tf
 
-import ReID_net.Constants as Constants
-from ReID_net.datasets.Augmentors import apply_augmentors
-from ReID_net.datasets.Util import Util
-from ReID_net.datasets.Util.Input import assemble_input_tensors
-from ReID_net.datasets.Util.Normalization import normalize
-from ReID_net.datasets.Util.Resize import resize
-from ReID_net.datasets.Util.Util import load_flow_from_flo, create_index_image, smart_shape
+import Constants as Constants
+from datasets.Augmentors import apply_augmentors
+from datasets.Util import Util
+from datasets.Util.Input import assemble_input_tensors
+from datasets.Util.Normalization import normalize
+from datasets.Util.Resize import resize
+from datasets.Util.Util import load_flow_from_flo, create_index_image, smart_shape
 
 
 def create_tensor_dict(unnormalized_img, label, tag, raw_label=None, old_label=None, flow_past=None, flow_future=None,

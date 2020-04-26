@@ -1,6 +1,6 @@
-from ReID_net.Forwarding.Forwarder import ImageForwarder
-from ReID_net.Log import log
-from ReID_net.Measures import average_measures
+from Forwarding.Forwarder import ImageForwarder
+from Log import log
+from Measures import average_measures
 
 
 class InteractiveImageForwarder(ImageForwarder):

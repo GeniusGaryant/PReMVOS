@@ -1,13 +1,13 @@
 import tensorflow as tf
 
-import ReID_net.Measures as Measures
+import Measures as Measures
 
-import ReID_net.Util as Util
+import Util as Util
 from .Forwarder import Forwarder, merge_multi_samples
 from .OneshotForwarder import OneshotForwarder
-from ReID_net.Measures import compute_iou_for_binary_segmentation
-from ReID_net.datasets.Util.MaskDamager import damage_mask
-from ReID_net.Log import log
+from Measures import compute_iou_for_binary_segmentation
+from datasets.Util.MaskDamager import damage_mask
+from Log import log
 import numpy
 import pickle
 from scipy.misc import imsave

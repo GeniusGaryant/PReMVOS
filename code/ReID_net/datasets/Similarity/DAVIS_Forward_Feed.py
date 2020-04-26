@@ -1,7 +1,7 @@
 import tensorflow as tf
-from ReID_net.datasets.Dataset import Dataset
-from ReID_net.datasets.Util.Normalization import normalize
-from ReID_net.datasets.Util.Resize import resize_image
+from datasets.Dataset import Dataset
+from datasets.Util.Normalization import normalize
+from datasets.Util.Resize import resize_image
 
 DEFAULT_INPUT_SIZE = [128, 128]
 

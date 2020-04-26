@@ -8,23 +8,24 @@ import subprocess
 import tensorflow as tf
 from tensorflow.contrib.framework import list_variables
 
-import ReID_net.Constants as Constants
-import ReID_net.Measures as Measures
-from ReID_net.Forwarding import IterativeImageForwarder, OneshotForwarder, DatasetSpeedtestForwarder
-from ReID_net.Forwarding.CMC_Validator import do_cmc_validation
-from ReID_net.Log import log
-from ReID_net.Trainer import Trainer
-from ReID_net.Util import load_wider_or_deeper_mxnet_model
-from ReID_net.datasets.Forward import forward, oneshot_forward, online_forward, offline_forward, interactive_forward, \
+import Constants as Constants
+import Measures as Measures
+from Forwarding import IterativeImageForwarder, OneshotForwarder, DatasetSpeedtestForwarder
+from Forwarding.CMC_Validator import do_cmc_validation
+from Log import log
+from Trainer import Trainer
+from Util import load_wider_or_deeper_mxnet_model
+from datasets.Forward import forward, oneshot_forward, online_forward, offline_forward, interactive_forward, \
   forward_clustering, forward_reid
-from ReID_net.datasets.Loader import load_dataset
-from ReID_net.network.Network import Network
+from datasets.Loader import load_dataset
+from network.Network import Network
 from tensorflow.contrib import slim
 
 
 class Engine(object):
-  def __init__(self, config, session=None):
+  def __init__(self, config, seq_path, session=None):
     self.config = config
+    self.seq_path = seq_path
     self.tfdbg = config.bool("tfdbg", False)
     self.dataset = config.str("dataset").lower()
     try:
@@ -66,7 +67,7 @@ class Engine(object):
       self.session = tf.Session(config=sess_config)
       if self.tfdbg:
         from tensorflow.python import debug as tf_debug
-        from ReID_net.Util import debug_is_zero
+        from Util import debug_is_zero
         self.session = tf_debug.LocalCLIDebugWrapperSession(self.session, thread_name_filter="MainThread$")
                                             #dump_root="/fastwork/" + username() + "/mywork/data/tmp_tfdbg/")
         self.session.add_tensor_filter("has_inf_or_nan", tf_debug.has_inf_or_nan)
@@ -83,7 +84,7 @@ class Engine(object):
     if self.use_pre_saved_data or not self.need_val:
       self.valid_data = None
     else:
-      self.valid_data = load_dataset(config, "valid", self.session, self.coordinator)
+      self.valid_data = load_dataset(config, "valid", self.session, self.coordinator, self.seq_path)
     if self.need_train:
       self.train_data = load_dataset(config, "train", self.session, self.coordinator)
     self.cmc_validation = self.dataset in ("cuhk", "cuhk03")
@@ -326,10 +327,13 @@ class Engine(object):
       network = self.train_network
       data = self.train_data
       forward_clustering(self, network, data)
+    ##########################################################
     elif self.task == "forward_ReID":
       network = self.test_network
       data = self.valid_data
-      forward_reid(self, network, data)
+      seq_path = self.seq_path
+      forward_reid(self, network, data, seq_path)
+    ##########################################################
     elif self.task in (Constants.FORWARD_INTERACTIVE, Constants.FORWARD_RECURSIVE):
       network = self.test_network
       data = self.valid_data

@@ -13,7 +13,7 @@ sys.setrecursionlimit(10000)
 # from hdbscan import HDBSCAN,all_points_membership_vectors, approximate_predict
 
 from .Forwarder import Forwarder
-from ReID_net.Log import log
+from Log import log
 
 class ClusteringForwarder(Forwarder):
   def __init__(self, engine):

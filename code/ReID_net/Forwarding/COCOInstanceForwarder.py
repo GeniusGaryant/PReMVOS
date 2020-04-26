@@ -4,8 +4,8 @@ from scipy.misc import imsave
 import numpy
 import tensorflow as tf
 
-from ReID_net.Forwarding.Forwarder import ImageForwarder
-from ReID_net.Measures import compute_measures_for_binary_segmentation
+from Forwarding.Forwarder import ImageForwarder
+from Measures import compute_measures_for_binary_segmentation
 
 
 class COCOInstanceForwarder(ImageForwarder):

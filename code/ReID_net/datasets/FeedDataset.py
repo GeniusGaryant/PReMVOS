@@ -2,13 +2,13 @@ from abc import abstractmethod
 
 import tensorflow as tf
 
-import ReID_net.Constants as Constants
-from ReID_net.datasets.Augmentors import parse_augmentors, apply_augmentors
-from ReID_net.datasets.Dataset import Dataset
-from ReID_net.datasets.Util.Input import assemble_input_tensors
-from ReID_net.datasets.Util.Normalization import unnormalize
-from ReID_net.datasets.Util.Reader import create_tensor_dict
-from ReID_net.datasets.Util.Resize import resize
+import Constants as Constants
+from datasets.Augmentors import parse_augmentors, apply_augmentors
+from datasets.Dataset import Dataset
+from datasets.Util.Input import assemble_input_tensors
+from datasets.Util.Normalization import unnormalize
+from datasets.Util.Reader import create_tensor_dict
+from datasets.Util.Resize import resize
 
 
 class FeedImageDataset(Dataset):
@@ -125,7 +125,7 @@ class FeedImageDataset(Dataset):
       tensors = {k: tf.expand_dims(tensors[k], axis=0) for k in keys}
 
       # for testing
-      # from ReID_net.datasets.Util.Normalization import unnormalize
+      # from datasets.Util.Normalization import unnormalize
       # summ0 = tf.summary.image("inputs", unnormalize(tensors["inputs"][:, :, :, :3]))
       # summ1 = tf.summary.image("labels", tensors["labels"] * 255)
       # summ2 = tf.summary.image("old_labels", tensors["inputs"][:, :, :, 3:4])

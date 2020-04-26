@@ -1,8 +1,8 @@
 import tensorflow as tf
 import numpy as np
-import ReID_net.Constants as Constants
-from ReID_net.Log import log
-from ReID_net.Util import average_gradients, clip_gradients
+import Constants as Constants
+from Log import log
+from Util import average_gradients, clip_gradients
 
 
 class Trainer(object):
@@ -71,7 +71,7 @@ class Trainer(object):
       reset_opt_op = tf.variables_initializer(opt_vars, "reset_optimizer")
       return opt, reset_opt_op
     elif self.opt_str == "yellowfin":
-      from ReID_net.external.yellowfin import YFOptimizer
+      from external.yellowfin import YFOptimizer
       return YFOptimizer(sparsity_debias=False), None
     elif self.opt_str == "none":
       return None, None

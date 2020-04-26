@@ -1,10 +1,10 @@
-import ReID_net.Measures as Measures
-import ReID_net.Util as Util
-from ReID_net.Forwarding import InteractiveImageForwarder
-from ReID_net.Forwarding.Forwarder import ImageForwarder
+import Measures as Measures
+import Util as Util
+from Forwarding import InteractiveImageForwarder
+from Forwarding.Forwarder import ImageForwarder
 import time
 from math import ceil
-from ReID_net.Log import log
+from Log import log
 
 
 class OneshotForwarder(ImageForwarder):

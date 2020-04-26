@@ -1,7 +1,7 @@
-from ReID_net.Forwarding.OneshotForwarder import OneshotForwarder
-from ReID_net.datasets.Util.Timer import Timer
-from ReID_net.Measures import average_measures
-from ReID_net.Log import log
+from Forwarding.OneshotForwarder import OneshotForwarder
+from datasets.Util.Timer import Timer
+from Measures import average_measures
+from Log import log
 
 import numpy
 from scipy.ndimage.morphology import distance_transform_edt, grey_erosion
