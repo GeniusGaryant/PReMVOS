@@ -1,13 +1,13 @@
 {
-"image_input_dir":"../data/DAVIS/JPEGImages/480p/",
-"bb_input_dir":"../output/intermediate/refined_proposals/",
-"output_dir":"../output/intermediate/ReID_proposals/",
+"image_input_dir":"/home/zjh/PReMVOS/data/training_dataset/lasot/crop511/",
+"bb_input_dir":"../output-lasot/intermediate/refined_proposals/",
+"output_dir":"../output-lasot/intermediate/ReID_proposals/",
 
 "model": "Re-ID",
 "write_summaries": false,
 "model_dir": "../weights/PReMVOS_weights/ReID_net/general_weights",
 "load": "../weights/PReMVOS_weights/ReID_net/general_weights/ReID_general_weights",
-"log_dir":"../output/logs/ReID_net",
+"log_dir":"../output-coco/logs/ReID_net",
 
 "task": "forward_ReID",
 "dataset": "davis_forward_similarity",
@@ -15,7 +15,7 @@
 "batch_size": 256,
 "batch_size_eval": 256,
 "log_verbosity": 5,
-"gpus": [0],
+"gpus": [1,2,3,4,5,6,7,8],
 "optimizer": "adam",
 "learning_rates": "{1: 0.00001}",
 "freeze_batchnorm": false,
