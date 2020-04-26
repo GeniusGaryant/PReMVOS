@@ -75,14 +75,14 @@ def split_data(json_dir, dataset_name):
         seq_list.append(key)
     splited_seq_lists = chunks(seq_list, 9)
     split_dir = "split_" + dataset_name + "/"
-    # if not os.path.exists(split_dir):
-    #     os.mkdir(split_dir)
     for i in range(9):
-        # print(len(splited_seq_lists[i]))
         for sub_seq in splited_seq_lists[i]:
+            seq_dir = ""
             target_dir = split_dir + str(i) + "/" + sub_seq
-            if not os.path.exists(split_dir + str(i)):
-                os.makedirs(split_dir + str(i))
+            for sub_path in target_dir.split("/")[:-1]:
+                seq_dir += sub_path+"/"
+            if not os.path.exists(seq_dir):
+                os.makedirs(seq_dir)
             with open(target_dir + ".json", "w") as f:
                 print("Writing {}".format(target_dir + ".json"))
                 random_content = 0
@@ -310,11 +310,11 @@ if __name__ == "__main__":
     # load_json(json_dir, "yt_bb")
     # print("yt_bb done.")
 
-    json_dir = "data/training_dataset/lasot/train.json"
+    json_dir = "data/training_dataset/coco/train2017.json"
     # load_json(json_dir, "lasot")
     # print("lasot done.")
 
-    split_data(json_dir, "lasot")
+    split_data(json_dir, "coco")
 
 
     # check_json(json_dir)
