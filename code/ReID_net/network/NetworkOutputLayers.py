@@ -1,13 +1,13 @@
 import numpy
 import tensorflow as tf
 
-import ReID_net.Constants as Constants
-from ReID_net.Measures import create_confusion_matrix, get_average_precision, compute_binary_ious_tf
+import Constants as Constants
+from Measures import create_confusion_matrix, get_average_precision, compute_binary_ious_tf
 from .NetworkLayers import Layer, L2_DEFAULT, BATCH_NORM_DECAY_DEFAULT
 from .Util_Network import prepare_input, global_avg_pool, prepare_collapsed_input_and_dropout, get_activation, \
   apply_dropout, conv2d, conv2d_dilated, bootstrapped_ce_loss, bootstrapped_ce_loss_ignore_void_label, \
   weighted_clicks_loss
-from ReID_net.datasets.Util.Util import smart_shape
+from datasets.Util.Util import smart_shape
 
 MAX_ADJUSTABLE_CLASSES = 100  # max 100 objects per sequence should be sufficient
 
@@ -25,7 +25,7 @@ class Softmax(Layer):
     else:
       inp, n_features_inp = prepare_collapsed_input_and_dropout(inputs, dropout)
 
-    with tf.variable_scope(name):
+    with tf.variable_scope(name, reuse=tf.AUTO_REUSE):
       W = self.create_weight_variable("W", [n_features_inp, n_classes], l2, tower_setup)
       b = self.create_bias_variable("b", [n_classes], tower_setup)
       y_ref = tf.cast(targets, tf.int64)
@@ -54,7 +54,7 @@ class SimilaritySoftmax(Layer):
 
     inp, n_features_inp = prepare_collapsed_input_and_dropout(inputs, dropout)
 
-    with tf.variable_scope(name):
+    with tf.variable_scope(name, reuse=tf.AUTO_REUSE):
       W = self.create_weight_variable("W", [n_features_inp, n_classes], l2, tower_setup)
       b = self.create_bias_variable("b", [n_classes], tower_setup)
 
@@ -206,7 +206,7 @@ class SegmentationSoftmax(Layer):
 
     filter_size = list(filter_size)
 
-    with tf.variable_scope(name):
+    with tf.variable_scope(name, reuse=tf.AUTO_REUSE):
       if input_activation is not None:
         inp = get_activation(input_activation)(inp)
 
@@ -259,7 +259,7 @@ class FullyConnectedWithTripletLoss(Layer):
     super(FullyConnectedWithTripletLoss, self).__init__()
     self.measures = {}
     inp, n_features_inp = prepare_collapsed_input_and_dropout(inputs, dropout)
-    with tf.variable_scope(name):
+    with tf.variable_scope(name, reuse=tf.AUTO_REUSE):
       if batch_norm:
         inp = tf.expand_dims(inp, axis=0)
         inp = tf.expand_dims(inp, axis=0)
@@ -431,7 +431,7 @@ class SoftmaxNoLoss(Layer):
     else:
       inp, n_features_inp = prepare_collapsed_input_and_dropout(inputs, dropout)
 
-    with tf.variable_scope(name):
+    with tf.variable_scope(name, reuse=tf.AUTO_REUSE):
       W = self.create_weight_variable("W", [n_features_inp, n_classes], l2, tower_setup)
       b = self.create_bias_variable("b", [n_classes], tower_setup)
       y_ref = tf.cast(targets, tf.int64)
@@ -461,7 +461,7 @@ class Clustering(Layer):
     self.measures = {}
     inp, n_features_inp = prepare_collapsed_input_and_dropout(inputs, dropout)
 
-    with tf.variable_scope(name):
+    with tf.variable_scope(name, reuse=tf.AUTO_REUSE):
       W = self.create_weight_variable("W", [n_features_inp, n_clusters], l2, tower_setup)
       b = self.create_bias_variable("b", [n_clusters], tower_setup)
       y_pred = tf.matmul(inp, W) + b

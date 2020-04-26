@@ -86,7 +86,7 @@ def get_activation(act_str):
 
 def create_batch_norm_vars(n_out, tower_setup, scope_name="bn"):
   dtype = tower_setup.dtype
-  with tf.device(tower_setup.variable_device), tf.variable_scope(scope_name):
+  with tf.device(tower_setup.variable_device), tf.variable_scope(scope_name, reuse=tf.AUTO_REUSE):
     initializer_zero = tf.constant_initializer(0.0, dtype=dtype)
     beta = tf.get_variable("beta", [n_out], dtype, initializer_zero)
     initializer_gamma = tf.constant_initializer(1.0, dtype=dtype)
@@ -121,7 +121,7 @@ def iou_from_logits(logits, labels):
   :return: 1D tensor of shape [num_classes] with intersection over union for each class, averaged over batch
   """
 
-  with tf.variable_scope("IoU"):
+  with tf.variable_scope("IoU", reuse=tf.AUTO_REUSE):
     # compute predictions
     preds = tf.arg_max(logits, dimension=3)
 
