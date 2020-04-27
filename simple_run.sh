@@ -1,48 +1,30 @@
 #!/bin/bash
 
-# Add ReID to proposals
-DATASET=lasot
+DATASET=vid
 GPU_NUMBER=1
 IMG_DIR=/home/zjh/PReMVOS/split_$DATASET/$GPU_NUMBER
-files=$(ls $IMG_DIR | cut -d . -f1)
-for i in $files
-do
-    echo "################# GENERATING $i PROPOSALS #################"
-    cd code
-    ReID_CONFIG=./ReID_net/configs/run
-    echo "$ReID_CONFIG"
-    CUDA_VISIBLE_DEVICES=$GPU_NUMBER ./ReID_net/main.py "$ReID_CONFIG" $i
-    cd ..
-done
+IMG_DIR_LEN=${#IMG_DIR}
 
-
-
-# # Problem seq
-# # seq="GOT-10k_Train_008628"
-# seq="GOT-10k_Train_008630"
-# # seq="GOT-10k_Train_009058"
-# echo "################# DEBUG $seq #################"
-# cd code
-# ReID_CONFIG=./ReID_net/configs/run
-# # echo "$ReID_CONFIG"
-# CUDA_VISIBLE_DEVICES=$GPU_NUMBER ./ReID_net/main.py "$ReID_CONFIG" $seq
-# cd ..
-
-
-
-# IMG_DIR=/home/zjh/PReMVOS/split_trackingnet/1
-# dir=$(ls -l $IMG_DIR |awk '/^d/ {print $NF}')
-# for i in $dir
-# do
-#   echo $i
-#   # echo "################# GENERATING ReID PROPOSALS #################"
-#   # cd code
-#   # ReID_CONFIG=./ReID_net/configs/run
-#   # echo "$ReID_CONFIG"
-#   # CUDA_VISIBLE_DEVICES=1,2,3,4,5,6,7,8 ./ReID_net/main.py "$ReID_CONFIG" $i
-#   # cd ..
-# done
-
+function lstdir() {
+    for file in `ls $1`
+    do
+        local path=$1"/"$file
+        if [ -d $path ]; then
+            lstdir $path;
+        elif [ -f $path ]; then
+            # cut suffix
+            path=${path%.*}
+            path=${path:$IMG_DIR_LEN+1}
+            echo "################# GENERATING $path PROPOSALS #################"
+            cd code
+            ReID_CONFIG=./ReID_net/configs/run
+            echo "$ReID_CONFIG"
+            CUDA_VISIBLE_DEVICES=$GPU_NUMBER ./ReID_net/main.py "$ReID_CONFIG" $path
+            cd ..
+        fi
+    done
+}
+lstdir $IMG_DIR;
 
 
 # if [ ! -d "$ReID_PROP_LOC" ]; then
