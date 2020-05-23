@@ -1,6 +1,8 @@
 import tensorflow as tf
 import numpy
 from math import ceil
+import cv2
+from scipy.misc import imsave
 
 from datasets.Dataset import Dataset
 from datasets.Util.Reader import load_image_tensorflow
@@ -9,12 +11,12 @@ from datasets.Util.Util import smart_shape, username
 from datasets.Augmentors import apply_augmentors
 from datasets.Util.Normalization import normalize, unnormalize
 
-# SIMILARITY_DEFAULT_PATH = "/fastwork/" + username() + "/mywork/data/CUHK03/"
 DEFAULT_INPUT_SIZE = [128, 128]
 SIMILARITY_VOID_LABEL = 255
 
 
 class SimilarityDataset(Dataset):
+
     def __init__(self, config, subset, coord, annotations, n_train_ids, jpg=True):
         super(SimilarityDataset, self).__init__(subset)
         assert subset in ("train", "valid"), subset
@@ -42,7 +44,7 @@ class SimilarityDataset(Dataset):
                 "context_region_factor_val", -1.0)
             if context_region_factor_val != -1.0:
                 self.context_region_factor = context_region_factor_val
-        self.use_summaries = self.config.bool("use_summaries", False)
+        self.use_summaries = self.config.bool("use_summaries", True)
 
         self.epoch_length = config.int("epoch_length", 1000)
         if subset != "train":
@@ -104,7 +106,6 @@ class SimilarityDataset(Dataset):
             return img, img_raw, tag, class_label_
 
         USE_DATASET_API = True
-        # import pdb; pdb.set_trace()
         if USE_DATASET_API:
             dataset = tf.data.Dataset.from_tensor_slices(
                 (tf_fns, tf_tags, tf_bboxes, tf_class_labels_list))
@@ -185,7 +186,6 @@ class SimilarityDataset(Dataset):
             return pair, label, tag, original_class_pair
 
         USE_DATASET_API = False
-        # import pdb; pdb.set_trace()
         if USE_DATASET_API:
             dummy = tf.constant(0, tf.int32)
             dataset = tf.contrib.data.Dataset.from_tensors(dummy)
@@ -319,13 +319,56 @@ class SimilarityDataset(Dataset):
         img_cropped = img_whole_im[img_y:img_y + img_h, img_x:img_x + img_w]
         # resize
         img = resize_image(img_cropped, self.input_size, True)
+        # image_print = sess.run(tf.Print(img, [img], summarize=128*128*3))
         img.set_shape(self.input_size + (3,))
+        self.draw(img, img_bbox)
+        # self.showimage_variable_opencv(img)
         # augment and normalize
         tensors = {"unnormalized_img": img}
         tensors = apply_augmentors(tensors, self.augmentors)
         img = tensors["unnormalized_img"]
         img_norm = normalize(img)
         return img_norm, img, img_cropped
+
+    def draw(self, image, gt_bbox):
+        bbox_img = tf.image.draw_bounding_boxes([image], [gt_bbox])
+        # numpy_bbox_img = bbox_img.eval(session=tf.compat.v1.Session())
+        with tf.name_scope('input_reshape'):
+        #     # image_input = tf.reshape(x, [-1, 28, 28, 1])
+            image_sum = tf.summary.image('input', bbox_img, 1)
+
+        image_placeholder = tf.placeholder(tf.float32, shape=[None, None, None], name="image")
+        with tf.Session() as sess:
+            summary_writer = tf.summary.FileWriter('../../../tensorboard', sess.graph)
+            summary_all = sess.run(tf.global_variables_initializer(), feed_dict={image_placeholder: bbox_img})
+            # summary_all = sess.run(image_sum)
+            summary_writer.add_summary(summary_all, 0)
+            summary_writer.close()
+
+        # image = tf.transpose(image, perm=[1, 2, 0])
+        # image_placeholder = tf.placeholder(tf.float32, shape=[None, None, None], name="image")
+        # sess = tf.Session()
+        # sess.run(tf.global_variables_initializer(), feed_dict={image_placeholder: image})
+        # img_numpy = bbox_img.eval(session=sess)
+
+        # plt.imshow(result[0].eval())
+        # cv2.imwrite('../../../bbox.jpg', numpy.asarray(img_numpy[0] * 255, numpy.uint8))
+
+        # image = cv2.rectangle(image, tuple([int(m) for m in gt_bbox[0:2].data]),
+                                # tuple([int(m) for m in gt_bbox[2:4].data]), (0, 0, 255), 2)
+        # cv2.imwrite('../../../debug/test.jpg')
+        print("Done.")
+
+    def showimage_variable_opencv(self, image):
+        image_tensor = tf.Variable(image, name = 'image')
+        image_placeholder = tf.placeholder(tf.float32, shape=[None, None, None], name="image")
+        with tf.Session() as sess:
+    #        image_flap = tf.transpose(image_tensor, perm = [1,0,2])
+            sess.run(tf.global_variables_initializer())
+            result = sess.run(image_tensor, feed_dict={image_placeholder: image_tensor})
+
+        cv2.imwrite('../../../debug/test.jpg')
+        print("Done.")
 
     def reshape_group(self, x, batch_size):
         shape = smart_shape(x)

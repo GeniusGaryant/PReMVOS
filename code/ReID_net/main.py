@@ -32,7 +32,7 @@ def main(_):
     # init_log(config)
     config.initialize()
 
-    dataset_name = "lasot"
+    dataset_name = "coco"
     # for coco:  seq_name: 'train2017/000000287469'
     # for det:   seq_name: 'a/n02028035_10675'
     # for vid:   seq_name: 'd/ILSVRC2015_train_01085000'
@@ -41,13 +41,13 @@ def main(_):
     seq_dir = ""
     for sub_path in seq_name.split("/")[:-1]:
         seq_dir += sub_path+"/"
-    save_dir = "/home/zjh/PReMVOS/score_" + dataset_name + "/" + seq_dir
+    save_dir = "../score_" + dataset_name + "/" + seq_dir
     if not os.path.exists(save_dir + seq_name.split("/")[-1] + ".json"):
         start = time.time()
-        print("Running seq_file: {}".format(seq_name))
+        # print("Running seq_file: {}".format(seq_name))
         engine = Engine(config, seq_name)
         engine.run()
-        print("seq_file {} finished, took {} sec".format(seq_name, time.time()-start))
+        print("seq_file {} finished, took {} sec\n\n\n".format(seq_name, time.time()-start))
     else:
         print("The seq_file {} already exists, move to the next..".format(seq_name))
 
@@ -99,5 +99,4 @@ if __name__ == '__main__':
     # only for stuff like initialization including creation of the graph, loading of weights, etc.
     # import cProfile
     # cProfile.run("tf.app.run(main)", sort="tottime")
-
     tf.app.run(main)

@@ -294,7 +294,7 @@ if __name__ == "__main__":
 
     print("In main:")
 
-    # json_dir = "data/training_dataset/coco/train2017.json"
+    json_dir = "data/training_dataset/coco/train2017.json"
     # load_json(json_dir, "coco")
     # print("coco done.")
 
@@ -310,7 +310,7 @@ if __name__ == "__main__":
     # load_json(json_dir, "yt_bb")
     # print("yt_bb done.")
 
-    json_dir = "data/training_dataset/coco/train2017.json"
+    # json_dir = "data/training_dataset/coco/train2017.json"
     # load_json(json_dir, "lasot")
     # print("lasot done.")
 

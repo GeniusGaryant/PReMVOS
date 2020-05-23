@@ -74,8 +74,7 @@ def get_measures(pred, filename):
   # pred = imread(pred_file)
   pred = np.where(pred > THRESH, 1, pred)
   # pred = np.max(pred, axis=2)
-  
-  #pdb.set_trace()
+
   filename = filename.replace(".jpg", '')
   filename = filename + ".png"
   gt_file = VOC_PATH + "SegmentationObject/" + filename

@@ -1,10 +1,10 @@
 {
-"image_input_dir":"/home/zjh/PReMVOS/data/training_dataset/lasot/crop511/",
-"bb_input_dir":"../output-lasot/intermediate/refined_proposals/",
-"output_dir":"../output-lasot/intermediate/ReID_proposals/",
+"image_input_dir":"../data/training_dataset/coco/crop511/",
+"bb_input_dir":"../output-coco/intermediate/refined_proposals/",
+"output_dir":"../output-coco/intermediate/ReID_proposals/",
 
 "model": "Re-ID",
-"write_summaries": false,
+"write_summaries": true,
 "model_dir": "../weights/PReMVOS_weights/ReID_net/general_weights",
 "load": "../weights/PReMVOS_weights/ReID_net/general_weights/ReID_general_weights",
 "log_dir":"../output-coco/logs/ReID_net",

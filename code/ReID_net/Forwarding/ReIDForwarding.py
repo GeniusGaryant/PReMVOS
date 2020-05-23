@@ -163,55 +163,21 @@ class ReIDForwarder(Forwarder):
                 print("Problem: {}".format(file_name))
                 all_proposals[name][ob_id][timestep] = [0.] * 128
                 n_processed += 1
-
-            # try:
-            #     y_val, tag_val = self.session.run([y_softmax, tag])
-            #     y_val = y_val[0]
-            #     curr_size = y_val.shape[0]
-            #     for i in range(curr_size):
-            #         nametime, _ = tag_val[i].decode('utf-8').split("___")
-            #         file_name = nametime.split("/")[-1]
-            #         ob_id = file_name.split('.')[1]
-            #         timestep = file_name.split('.')[0]
-            #         y = np.array(y_val[i]).tolist()
-            #         all_proposals[name][ob_id][timestep] = y
-            #     n_processed += curr_size
-            # except:
-            #     print("Problem here.")
-            #     import pdb; pdb.set_trace()
-
-            #     try:
-            #         all_proposals[name][ob_id][str(n_processed).zfill(6)] = y
-            #     except:
-            #         print("From the first frame...")
-            #         all_proposals[name][ob_id][str(n_processed).zfill(6)] = []
-            #         problem_frame.append(n_processed)
-            #     n_processed += 1
-
             print(n_processed, "/", n_total, " elapsed: ", time.time() - start)
-        
-        # debug到这里
-        # if problem_frame:
-        #     print("Circle finished, patching the problem frame..")
-        #     for i in problem_frame[::-1]:
-        #         print("Patching frame {}".format(i+1))
-        #         all_proposals[seq_path]["00"][str(i+1).zfill(6)] = all_proposals[seq_path]["00"][str(i+2).zfill(6)]
-        # else:
-        #     print("First Frame is ok.")
 
         print("Process finished, took {} sec".format(time.time() - start_all))
 
-        dataset_name = "lasot"
+        dataset_name = "coco"
         seq_dir = ""
         for sub_path in seq_path.split("/")[:-1]:
             seq_dir += sub_path+"/"
-        save_dir = "/home/zjh/PReMVOS/score_" + dataset_name + "/" + seq_dir
+        save_dir = "../score_" + dataset_name + "/" + seq_dir
         if not os.path.exists(save_dir):
             os.makedirs(save_dir)
         with open(save_dir + seq_path.split("/")[-1] + ".json", "w") as f:
             final = all_proposals
             json.dump(final, f)
-            print("SAVED ALL PROPOSALS WITH REID VECTOR\n\n\n")
+            print("SAVED ALL PROPOSALS WITH REID VECTOR")
 
 
     def forward(self, network, data, seq_path, save_results=True, save_logits=False):
